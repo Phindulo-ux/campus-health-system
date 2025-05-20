@@ -26,7 +26,7 @@ const Submitted = () => {
         style={{
           fontSize: "3rem",
           fontWeight: "bold",
-          color: "#0f2b5b", // Dark Blue
+          color: "#0f2b5b", 
           marginBottom: "1.5rem"
         }}
       >
@@ -46,7 +46,7 @@ const Submitted = () => {
       <button
         onClick={handleContinue}
         style={{
-          backgroundColor: "#1da1a9", // Teal Color
+          backgroundColor: "#1da1a9", 
           color: "#fff",
           padding: "12px 30px",
           fontSize: "1rem",

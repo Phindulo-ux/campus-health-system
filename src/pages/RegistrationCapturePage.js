@@ -42,7 +42,7 @@ function RegistrationCapturePage() {
       return;
     }
 
-    // Simulate upload and redirect
+  
     setMessage("File uploaded successfully!");
     setTimeout(() => {
       navigate("/booking");

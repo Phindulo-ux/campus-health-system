@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-// 8-digit input component with placeholder and editability
+
 const EightDigitDateInput = ({ label, name, value, onChange }) => {
   const handleChange = (e, index) => {
     const newValue = value.split('');
@@ -110,6 +110,32 @@ function OnboardingPage() {
   };
 
   const handleMouseUp = () => {
+    signatureRef.current.isDrawing = false;
+  };
+
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    const canvas = signatureRef.current;
+    const ctx = canvas.getContext("2d");
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    ctx.beginPath();
+    ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    canvas.isDrawing = true;
+  };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+    const canvas = signatureRef.current;
+    if (!canvas.isDrawing) return;
+    const ctx = canvas.getContext("2d");
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    ctx.stroke();
+  };
+
+  const handleTouchEnd = () => {
     signatureRef.current.isDrawing = false;
   };
 
@@ -315,6 +341,9 @@ function OnboardingPage() {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         ></canvas>
         <button
           type="button"
