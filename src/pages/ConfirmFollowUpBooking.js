@@ -5,7 +5,7 @@ function ConfirmFollowUpPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Correctly retrieve appointmentDate and appointmentTime
+
   const {
     previousAppointment,
     followUpFor,
